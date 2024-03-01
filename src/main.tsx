@@ -5,7 +5,7 @@ import { App } from "./app.tsx";
 // document.getElementById("root") as HTMLElement
 // Giúp typescript biết chắc chắn là HTMLElement
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>,
 );
