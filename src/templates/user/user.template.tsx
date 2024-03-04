@@ -1,19 +1,22 @@
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Suspense } from "react";
+import { Outlet } from "react-router-dom";
+import { Header } from "@/templates/components/header/header";
+import { Footer } from "src/templates/components/footer";
+import { Menu } from "src/templates/components/menu";
 
 export function UserTemplate() {
     return (
         <>
-            <header>
-                <Link to={"/"}>Home</Link>
-                <Link to={"/detail"}>Detail</Link>
-                <NavLink to={"/carts"}>Carts</NavLink>
-            </header>
+            <Header />
+            <Menu />
 
             <main>
-                Component Page: <Outlet />
+                <Suspense fallback="Loading...">
+                    <Outlet />
+                </Suspense>
             </main>
 
-            <footer>Footer</footer>
+            <Footer />
         </>
     );
 }

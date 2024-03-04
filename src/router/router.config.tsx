@@ -107,20 +107,25 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: "",
+                // Lúc sử dụng chưa tải xong, nên sẽ bị lỗi
+                // khắc phục: Suspense
                 element: <Home />,
             },
             {
                 path: "detail",
                 // sử dụng trước khi được download về
-                element: (
-                    <Suspense fallback={<>loading...</>}>
-                        <Detail />
-                    </Suspense>
-                ),
+                element: <Detail />,
             },
             {
                 path: "carts",
                 element: <Carts />,
+                /**
+                 * <UserTemplate>
+                 *  <Suspense>
+                 *      <Carts />
+                 *  </Suspense>
+                 * </UserTemplate>
+                 */
             },
             {
                 path: "profile",
