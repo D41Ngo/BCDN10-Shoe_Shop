@@ -1,3 +1,9 @@
+import { Carousel } from "./carousel";
+
 export default function Home() {
-    return <>Home</>;
+    return (
+        <div>
+            <Carousel />
+        </div>
+    );
 }

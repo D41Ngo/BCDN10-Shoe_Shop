@@ -20,7 +20,20 @@
     "strict": true,
     "noUnusedLocals": false,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    // Setup đường dẫn absolute
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "src/*": [
+        "src/*"
+      ],
+      "~/*": [
+        "public/*"
+      ]
+    }
   },
   "include": [
     "src"
