@@ -21,6 +21,7 @@ export function ListCard(props: Props) {
             {props.cards.map((i) => {
                 return (
                     <Card
+                        id={i.id}
                         name={i.name}
                         img={i.img}
                         shortDesc={i.shortDesc}

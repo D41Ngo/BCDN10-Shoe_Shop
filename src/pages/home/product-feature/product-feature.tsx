@@ -8,7 +8,7 @@ import axios from "axios";
 import { TCard } from "@/components/list-card/card/card.type";
 import { BASE_URL } from "@/constants";
 import { axiosWithoutAuth } from "@/services/axios.config";
-import { getProduct } from "@/services/product.service";
+import { getProduct } from "@/services/product/product.service";
 import { IIFE } from "@/utils";
 
 export function ProductFeature() {
