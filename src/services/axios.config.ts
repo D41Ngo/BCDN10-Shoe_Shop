@@ -13,3 +13,14 @@ export const axiosWithoutAuth = axios.create({
 });
 
 export const axiosWithAuth = axios.create({});
+
+// class _axios {
+//     constructor(...rest: any) {}
+//     static init(...rest: any) {
+//         return new _axios(...rest);
+//     }
+
+//     static create(...rest: any) {
+//         return new _axios(...rest);
+//     }
+// }

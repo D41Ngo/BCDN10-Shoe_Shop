@@ -8,6 +8,8 @@ import axios from "axios";
 import { TCard } from "@/components/list-card/card/card.type";
 import { BASE_URL } from "@/constants";
 import { axiosWithoutAuth } from "@/services/axios.config";
+import { getProduct } from "@/services/product.service";
+import { IIFE } from "@/utils";
 
 export function ProductFeature() {
     const [cards, setCards] = useState<TCard[]>([]);
@@ -62,13 +64,10 @@ export function ProductFeature() {
     // V.3:
     useEffect(() => {
         // 200
-        axiosWithoutAuth
-            .get(`/Product`)
-            .then((resp) => {
-                const data = resp.data; // undefined
+        IIFE(async () => {
+            try {
+                const data = await getProduct();
 
-                // Cẩn thận thêm 1 chút:
-                // data?.message: data !== null && data !== undefined && data.message
                 if (data?.message === "Thành công!") {
                     const content = data.content;
 
@@ -76,10 +75,10 @@ export function ProductFeature() {
                 } else {
                     console.log("Error ::: ", data);
                 }
-            })
-            .catch((e) => {
-                console.log(e);
-            });
+            } catch (e) {
+                console.log({ e });
+            }
+        });
     }, []);
 
     return (
