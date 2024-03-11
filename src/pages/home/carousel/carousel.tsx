@@ -14,9 +14,7 @@ const contentStyle: React.CSSProperties = {
 export function Carousel() {
     const carouselRef = useRef(null);
 
-    const onChange = (currentSlide: number) => {
-        console.log(currentSlide);
-    };
+    const onChange = (currentSlide: number) => {};
 
     return (
         <>

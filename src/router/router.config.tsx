@@ -2,7 +2,7 @@ import { createBrowserRouter, Outlet } from "react-router-dom";
 
 // ** code splitting
 
-import React, { lazy, Suspense } from "react";
+import { lazy } from "react";
 // React.lazy
 // React.useState
 
@@ -13,12 +13,13 @@ const Detail = lazy(() => import("../pages/detail/detail")); // chưa xong
 
 // ---
 import { Carts } from "../pages/carts/carts";
-import { Profile } from "../pages/profile/profile";
 import { Login } from "../pages/login/login";
+import { Profile } from "../pages/profile/profile";
 import { Register } from "../pages/register/register";
 import { Search } from "../pages/search/search";
-import { UserTemplate } from "../templates/user/user.template";
 import { AdminTemplate } from "../templates/admin/admin.template";
+import { UserTemplate } from "../templates/user/user.template";
+import { ScrollToTop } from "@/components/scroll-to-top";
 
 /**
  * Outlet: Giống với props.children
@@ -103,52 +104,65 @@ export const router = createBrowserRouter([
     },
 
     {
-        element: <UserTemplate />,
+        element: <ScrollToTop />,
         children: [
             {
-                path: "",
-                // Lúc sử dụng chưa tải xong, nên sẽ bị lỗi
-                // khắc phục: Suspense
-                element: <Home />,
-            },
-            {
-                path: "detail",
-                // sử dụng trước khi được download về
-                element: <Detail />,
-            },
-            {
-                path: "carts",
-                element: <Carts />,
-                /**
-                 * <UserTemplate>
-                 *  <Suspense>
-                 *      <Carts />
-                 *  </Suspense>
-                 * </UserTemplate>
-                 */
-            },
-            {
-                path: "profile",
-                element: <Profile />,
+                element: <UserTemplate />,
+                children: [
+                    {
+                        path: "",
+                        // Lúc sử dụng chưa tải xong, nên sẽ bị lỗi
+                        // khắc phục: Suspense
+                        element: <Home />,
+                    },
+                    {
+                        path: "detail/:productId",
+                        // detail/3
+                        // detail/2
+                        // detail/1
+                        // detail/10
+
+                        // Chỉ truyền 1 tham số
+
+                        // query-string dùng cho truyền nhiều tham số. ?q=men&id=10
+                        // sử dụng trước khi được download về
+                        element: <Detail />,
+                    },
+                    {
+                        path: "carts",
+                        element: <Carts />,
+                        /**
+                         * <UserTemplate>
+                         *  <Suspense>
+                         *      <Carts />
+                         *  </Suspense>
+                         * </UserTemplate>
+                         */
+                    },
+                    {
+                        path: "profile",
+                        element: <Profile />,
+                    },
+
+                    {
+                        path: "search",
+                        element: <Search />,
+                    },
+                ],
             },
 
             {
-                path: "search",
-                element: <Search />,
-            },
-        ],
-    },
-
-    {
-        element: <AdminTemplate />,
-        children: [
-            {
-                path: "login",
-                element: <Login />,
-            },
-            {
-                path: "register",
-                element: <Register />,
+                element: <AdminTemplate />,
+                children: [
+                    {
+                        path: "login",
+                        element: <Login />,
+                    },
+                    {
+                        path: "register",
+                        element: <Register />,
+                    },
+                ],
             },
         ],
     },

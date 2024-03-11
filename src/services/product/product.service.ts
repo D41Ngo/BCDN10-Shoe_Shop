@@ -1,4 +1,5 @@
-import { axiosWithoutAuth } from "./axios.config";
+import { axiosWithoutAuth } from "../axios.config";
+import { IProductApi } from "./product.type";
 
 // // 1. Callback function
 // export const getProduct = (cb: any) => {
@@ -47,3 +48,10 @@ export const getProduct = async () => {
  * trả về kết quả thất bại throw new Error(__)
  *
  */
+
+export const getProductById = (id: number | string): Promise<IProductApi> => {
+    return axiosWithoutAuth
+        .get(`Product/getbyid?id=${id}`)
+        .then((resp) => resp.data)
+        .then((resp) => resp.content);
+};
