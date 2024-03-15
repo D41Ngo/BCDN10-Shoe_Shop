@@ -1,6 +1,6 @@
 import React from "react";
 
-export function SearchIcon() {
+export const SearchIcon = React.memo(function SearchIcon() {
     return (
         <svg
             className="w-6 h-6 text-gray-800 dark:text-white"
@@ -19,4 +19,4 @@ export function SearchIcon() {
             />
         </svg>
     );
-}
+});

@@ -1,11 +1,12 @@
 // ** Router
-import { RouterProvider } from "react-router-dom";
+import { RouterProvider, useLocation } from "react-router-dom";
 import { router } from "./router/router.config.tsx";
 // ** End - Router
 import { GlobalStyle } from "./components/global-style/global-style.tsx";
 
 import { styled } from "styled-components";
-import React from "react";
+import React, { useEffect } from "react";
+import { getProfile } from "./services/index.ts";
 
 // ** Định nghĩa type cho styled-component
 type TH1Props = {
@@ -32,6 +33,14 @@ export function App() {
     // return <RouterProvider router={router} />;
 
     // ctrl+shift+p: restart ts server
+
+    useEffect(() => {
+        getProfile()
+            .then(() => {
+                // Lưu vào redux
+            })
+            .catch(console.log)
+    }, [])
 
     return (
         <GlobalStyle>

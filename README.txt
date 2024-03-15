@@ -8,3 +8,8 @@
 - Cách tạo 1 component chỉ quản style
 - Cách truyền và nhận props của component
 - Typescript: Định nghĩa props cho component
+
+# Memo
+- memo: (HOC)
+- useMemo: 
+- useCallback:

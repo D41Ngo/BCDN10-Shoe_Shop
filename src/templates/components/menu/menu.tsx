@@ -38,20 +38,6 @@ export function Menu() {
                 Home
             </NavLink>
             <NavLink
-                style={(props) => {
-                    const { isActive } = props;
-                    return {
-                        fontWeight: isActive ? 700 : 400,
-                        textDecoration: isActive ? "underline" : "none",
-                    };
-                }}
-                className={S["nav-link"]}
-                to={"/detail"}
-            >
-                Detail
-            </NavLink>
-
-            <NavLink
                 style={() => activeQuery("?q=men&age=10")}
                 className={S["nav-link"]}
                 to={"/search?q=men&age=10"}
