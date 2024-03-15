@@ -11,6 +11,7 @@ import { LogoIcon, SearchIcon } from "@/assets/icons";
 import { CiShoppingCart } from "react-icons/ci";
 
 export function Header() {
+    // Lấy từ redux xuống để kiểm tra xem thử người dùng đã login hay chưa
     return (
         <header className={S.header}>
             <Link to={"/"}>
@@ -28,6 +29,13 @@ export function Header() {
                     <CiShoppingCart />
                     <span>(1)</span>
                 </Link>
+
+                {/* Nếu đăng nhập */}
+                <Link className={S["nav-link"]} to={"/profile"}>
+                    Profile
+                </Link>
+
+                {/* Chưa đăng nhập */}
                 <Link className={S["nav-link"]} to={"/login"}>
                     Login
                 </Link>
