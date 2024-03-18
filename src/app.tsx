@@ -1,51 +1,34 @@
 // ** Router
-import { RouterProvider, useLocation } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
 import { router } from "./router/router.config.tsx";
 // ** End - Router
+
+// ** Redux
+import { store } from './redux/store.config.ts';
+import { Provider } from 'react-redux';
+// ** End - Redux
 import { GlobalStyle } from "./components/global-style/global-style.tsx";
 
-import { styled } from "styled-components";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { getProfile } from "./services/index.ts";
 
-// ** Định nghĩa type cho styled-component
-type TH1Props = {
-    color: string;
-};
-
-const H1 = styled.h3<TH1Props>`
-    font-size: 50px;
-    /* color: green; */
-
-    /* Nhận props */
-
-    color: ${(props) => {
-        console.log(props);
-        return props.color;
-    }};
-`;
-
-/**
- * Không được tạo component bên trong component
- */
-
 export function App() {
-    // return <RouterProvider router={router} />;
-
-    // ctrl+shift+p: restart ts server
-
     useEffect(() => {
+        // 1.
         getProfile()
-            .then(() => {
+            .then((res) => {
                 // Lưu vào redux
+                console.log(res);
             })
             .catch(console.log)
     }, [])
 
     return (
         <GlobalStyle>
-            {/* ReactNode */}
-            <RouterProvider router={router} />
+            <Provider store={store}>
+                {/* ReactNode */}
+                <RouterProvider router={router} />
+            </Provider>
         </GlobalStyle>
     );
 }

@@ -1,9 +1,19 @@
-import { signup } from "@/services";
+import { getProfile, signup } from "@/services";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from 'yup'
 export function Register() {
     const navigate = useNavigate();
+
+    // useEffect(() => {
+    //     // 2.
+    //     getProfile()
+    //         .then(() => {
+    //             // Lưu vào redux
+    //         })
+    //         .catch(console.log)
+    // }, [])
 
     return (
         <div className="flex justify-center my-4">

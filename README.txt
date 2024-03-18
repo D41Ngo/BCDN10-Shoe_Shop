@@ -13,3 +13,10 @@
 - memo: (HOC)
 - useMemo: 
 - useCallback:
+
+# Vấn đề:
+- Mỗi lần gọi api get profile là chúng ta lại lưu lên trên redux
+- Gọi 2 lần thì cần connect để lưu lên trên redux 2 lần
+
+# Cách giải quyết:
+- middle ware redux: thunk
