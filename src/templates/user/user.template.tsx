@@ -5,19 +5,21 @@ import { Footer } from "src/templates/components/footer";
 import { Menu } from "src/templates/components/menu";
 import { useAppDispatch } from "@/redux/hook.ts";
 import { getProfile } from "@/services";
-import { setUser } from "@/redux/auth/auth.slice.ts";
+import { getProfileThunk, setUser } from "@/redux/auth/auth.slice.ts";
 
 export function UserTemplate() {
     const dispatch = useAppDispatch();
 
+    // Sau khi vao trang web thi user se
+    // goi api de kiem tra da login truoc do hay chua
     useEffect(() => {
         // 1.
-        getProfile()
-            .then((res) => {
-                // Lưu vào redux
-                dispatch(setUser(res.data.content));
-            })
-            .catch(console.log);
+        dispatch(getProfileThunk());
+        // .then((res) => {
+        //     // Lưu vào redux
+        //     dispatch(setUser(res.data.content));
+        // })
+        // .catch(console.log);
     }, []);
 
     return (

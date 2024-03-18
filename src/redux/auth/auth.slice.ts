@@ -1,4 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { getProfile } from "@/services";
+
+export const getProfileThunk = createAsyncThunk("getProfileThunk", async () => {
+    const resp = await getProfile();
+    return resp.data.content;
+});
 
 const initialState = {
     user: null,
@@ -11,6 +17,12 @@ const AuthSlice = createSlice({
         setUser: (state, { payload }) => {
             state.user = payload;
         },
+    },
+
+    extraReducers: (builder) => {
+        builder.addCase(getProfileThunk.fulfilled, (state, { payload }) => {
+            state.user = payload;
+        });
     },
 });
 
