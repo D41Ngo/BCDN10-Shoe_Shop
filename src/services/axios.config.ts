@@ -1,7 +1,7 @@
 // Tạo ra một instance axios
 // BASE_URL
 
-import { ACCESS_TOKEN, BASE_URL } from "@/constants";
+import { ACCESS_TOKEN, BASE_URL, TOKEN_CYBER } from "@/constants";
 import { getLocalStorage } from "@/utils";
 import axios from "axios";
 
@@ -23,15 +23,16 @@ export const axiosWithAuth = axios.create({
 // Đính kèm thêm thông tin cho api trước khi gửi đi
 axiosWithAuth.interceptors.request.use(
     (config) => {
-        config.headers.Authorization = `Bearer ${getLocalStorage(ACCESS_TOKEN)}`
+        config.headers.Authorization = `Bearer ${getLocalStorage(ACCESS_TOKEN)}`;
+        config.headers.tokenCybersoft = TOKEN_CYBER;
 
-        config.headers.test = 'test';
+        config.headers.test = "test";
 
         return config;
     },
     (e) => {
         return Promise.reject(e);
-    }
+    },
 );
 
 // class _axios {
