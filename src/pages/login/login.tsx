@@ -1,15 +1,15 @@
 import { ACCESS_TOKEN } from "@/constants";
-import { getProfile, signin } from "@/services";
+import { signin } from "@/services";
 import { saveLocalStorage } from "@/utils";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { useDispatch } from "react-redux";
-import { setUser } from "@/redux/auth/auth.slice.ts";
+import { getProfileThunk } from "@/redux/auth/auth.slice.ts";
+import { useAppDispatch } from "@/redux/hook.ts";
 
 export function Login() {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const { handleSubmit, touched, errors, getFieldProps } = useFormik({
         initialValues: {
@@ -34,12 +34,12 @@ export function Login() {
                     // refreshToken
 
                     // 2.
-                    getProfile()
-                        .then((res) => {
-                            // Lưu vào redux
-                            dispatch(setUser(res.data.content));
-                        })
-                        .catch(console.log);
+                    dispatch(getProfileThunk());
+                    // .then((res) => {
+                    //     // Lưu vào redux
+                    //     dispatch(setUser(res.data.content));
+                    // })
+                    // .catch(console.log);
                 })
                 .catch((e) => {
                     alert(e.response.data.message);
