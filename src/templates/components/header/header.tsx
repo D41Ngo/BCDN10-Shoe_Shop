@@ -11,6 +11,8 @@ import { LogoIcon, SearchIcon } from "@/assets/icons";
 import { CiShoppingCart } from "react-icons/ci";
 import { useAppDispatch, useAppSelector } from "@/redux/hook.ts";
 import { setUser } from "@/redux/auth/auth.slice.ts";
+import { removeLocalStorage } from "@/utils";
+import { ACCESS_TOKEN } from "@/constants";
 
 export function Header() {
     // Lấy từ redux xuống để kiểm tra xem thử người dùng đã login hay chưa
@@ -20,6 +22,9 @@ export function Header() {
     const handleLogout = () => {
         dispatch(setUser(null));
         // Xóa localStorage
+        removeLocalStorage(ACCESS_TOKEN);
+
+        // call api de logout
     };
 
     return (
